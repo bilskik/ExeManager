@@ -15,7 +15,7 @@ import java.util.HashMap;
 import java.util.Map;
 import java.util.Scanner;
 
-public class Login {
+public class Login extends FXMLinitializer {
     @FXML
     private TextField login;
     @FXML
@@ -37,22 +37,13 @@ public class Login {
             passwd.clear();
         }
         if(checkifExists(log,pass)) {
-            try {
-                FXMLLoader loader = new FXMLLoader(getClass().getResource("main.fxml"));
-                Parent root = loader.load();
-                stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
-                scene = new Scene(root);
-                stage.setScene(scene);
-                stage.show();
-                MainController controller = (MainController)loader.getController();
-                controller.setNick(log);
-
-            }
-            catch(IOException e) {
-                Alerts alert = new Alerts("FileNotFound!");
-                alert.displayError();
-                e.printStackTrace();
-            }
+            FXMLLoader loader = initalize_2(event,"main.fxml");
+            UserName userName = UserName.getInstance();
+            userName.setName(log);
+            userName.setSurename(pass);
+            System.out.println(userName.getName() + " " + userName.getSurename());
+            MainController controller = (MainController)loader.getController();
+            controller.setNick(userName.getName());
         }
         else {
             Alerts alert = new Alerts("No account!", "Account doesn't exists!");
@@ -62,22 +53,8 @@ public class Login {
         }
     }
     public void noacc(ActionEvent event) {
-        try {
-            Parent root = FXMLLoader.load(getClass().getResource("register.fxml"));
-            stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
-            scene = new Scene(root);
-            stage.setScene(scene);
-            stage.show();
-        }
-        catch(IOException e) {
-            Alerts alert = new Alerts("FileNotFound!");
-            alert.displayError();
-            e.printStackTrace();
-        }
-        finally {
-            Register register = new Register();
-        }
-
+        initalize(event,"register.fxml");
+        Register register = new Register();
     }
     private boolean checkifExists(String log, String pass) {
         Reader reader = new Reader();

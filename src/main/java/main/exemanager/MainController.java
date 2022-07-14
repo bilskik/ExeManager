@@ -15,14 +15,11 @@ import java.net.URL;
 import java.sql.Statement;
 import java.util.ResourceBundle;
 
-public class MainController implements Initializable {
+public class MainController extends FXMLinitializer implements Initializable  {
     @FXML
     Label nick;
     @FXML
     Label ExeManager;
-    Parent root;
-    Stage stage;
-    Scene scene;
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
         nick.setText("");
@@ -31,37 +28,31 @@ public class MainController implements Initializable {
         nick.setText(user);
     }
     public void shoulder(ActionEvent event) {
-        nick.setText("siema");
-        System.out.println("ramie");
+        initalizeBigController(event,"BARKI");
+
     }
     public void chest(ActionEvent event) {
-        ;
+        initalizeBigController(event,"KLATKA PIERSIOWA");
     }
     public void bictric(ActionEvent event) {
-        ;
+        initalizeBigController(event,"BIC&TRIC");
     }
     public void back(ActionEvent event) {
-        ;
+        initalizeBigController(event,"PLECY");
     }
     public void abs(ActionEvent event) {
-        ;
+        initalizeBigController(event,"BRZUCH");
     }
     public void legs(ActionEvent event) {
-        ;
+        initalizeBigController(event,"NOGI");
     }
     public void logOut(ActionEvent event) {
-        try {
-            Parent root = FXMLLoader.load(getClass().getResource("login.fxml"));
-            stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
-            scene = new Scene(root);
-            stage.setScene(scene);
-            stage.show();
-        }
-        catch(IOException e) {
-            e.printStackTrace();
-            Alerts alerts = new Alerts("FileNotFound!");
-            alerts.displayError();
-        }
+        initalize(event, "login.fxml");
+    }
+    private void initalizeBigController(ActionEvent event, String exeName) {
+        FXMLLoader loader = initalize_2(event,"exercisesPage.fxml");
+        BigController bigController = (BigController)loader.getController();
+        bigController.setLabel(exeName);
     }
 
 
