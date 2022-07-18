@@ -1,4 +1,4 @@
-package main.exemanager;
+package data;
 
 public class UserName {
     String name;

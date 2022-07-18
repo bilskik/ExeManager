@@ -1,19 +1,15 @@
 package main.exemanager;
 
+import data.UserName;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
-import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
-import javafx.scene.control.Alert;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
 
-import java.io.*;
-import java.util.HashMap;
 import java.util.Map;
-import java.util.Scanner;
 
 public class Login extends FXMLinitializer {
     @FXML
@@ -26,12 +22,12 @@ public class Login extends FXMLinitializer {
     public void submit(ActionEvent event) {
         String log = login.getText();
         String pass = passwd.getText();
-        if(log == "") {
+        if(log.equals("")) {
             Alerts alerts = new Alerts("You haven't written your login!");
             alerts.displayError();
             login.clear();
         }
-        else if(pass == "") {
+        else if(pass.equals("")) {
             Alerts alerts = new Alerts("You haven't written your password");
             alerts.displayError();
             passwd.clear();

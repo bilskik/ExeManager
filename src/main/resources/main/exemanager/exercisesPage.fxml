@@ -7,7 +7,6 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-
 <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="650.0" prefWidth="600.0" style="-fx-background-color: #00ffff;" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="main.exemanager.BigController">
    <children>
       <Label fx:id="exe" alignment="CENTER" layoutX="150.0" layoutY="29.0" prefHeight="50.0" prefWidth="300.0" text="cos tam ">
@@ -21,7 +20,7 @@
             <Font size="18.0" />
          </font>
       </Button>
-      <VBox layoutX="420.0" layoutY="103.0" prefHeight="475.0" prefWidth="80.0" />
+      <VBox fx:id="radioBox" layoutX="420.0" layoutY="103.0" prefHeight="475.0" prefWidth="80.0" />
       <Button layoutX="18.0" layoutY="596.0" mnemonicParsing="false" onAction="#addElements" prefHeight="45.0" prefWidth="80.0" style="-fx-background-color: #ff9966; -fx-border-width: 3; -fx-border-color: #800000;" text="Add">
          <font>
             <Font size="18.0" />
