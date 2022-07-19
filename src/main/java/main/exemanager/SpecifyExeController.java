@@ -1,5 +1,9 @@
 package main.exemanager;
 
+import data.BodyPartsData;
+import data.BodyPartsInstance;
+import data.DataManager;
+import data.ThatExercise;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -10,7 +14,7 @@ import javafx.scene.control.TextField;
 import java.net.URL;
 import java.util.ResourceBundle;
 
-public class SpecifyExeController extends FXMLinitializer implements Initializable {
+public class SpecifyExeController extends FXMLinitializer implements Initializable, BodyPartsInstance {
     @FXML
     Label specExe;
     @FXML
@@ -23,13 +27,15 @@ public class SpecifyExeController extends FXMLinitializer implements Initializab
     TextField timeBreak;
     TextField [] textValues;
     Double [] data;
+    String bodyPartName;
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
         specExe.setText("");
     }
-    public void setLabel(String exeName) {
+    public void setLabel(String exeName, String bodyPartName) {
         specExe.setText(exeName);
         textValues = setTextField();
+        this.bodyPartName = bodyPartName;
         data = setInteger();
     }
     public void edit(ActionEvent event) {
@@ -57,6 +63,17 @@ public class SpecifyExeController extends FXMLinitializer implements Initializab
         BigController bigController = (BigController)loader.getController();
         bigController.setLabel("ThatExe");
     }
+    @Override
+    public BodyPartsData getBodyInstance() {
+        DataManager dataManager = DataManager.getInstance();
+        return null;
+    }
+
+    @Override
+    public ThatExercise getThatExeInstance() {
+        return null;
+    }
+
     private TextField [] setTextField() {
         textValues = new TextField[4];
         textValues[0] = series;
@@ -73,4 +90,6 @@ public class SpecifyExeController extends FXMLinitializer implements Initializab
         for(var field : textValues)
             field.setEditable(b);
     }
+
+
 }

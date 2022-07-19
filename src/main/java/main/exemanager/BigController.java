@@ -1,7 +1,6 @@
 package main.exemanager;
 
-import data.ThatExercise;
-import data.UserName;
+import data.*;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
@@ -19,7 +18,7 @@ import javafx.scene.text.Font;
 import java.net.URL;
 import java.util.*;
 
-public class BigController extends FXMLinitializer implements Initializable {
+public class BigController extends FXMLinitializer implements Initializable, BodyPartsInstance {
     @FXML
     Label exe;
     @FXML
@@ -58,7 +57,7 @@ public class BigController extends FXMLinitializer implements Initializable {
                 public void handle(MouseEvent mouseEvent) {
                     FXMLLoader loader = initalize_2(event, "specifiedExe.fxml");
                     SpecifyExeController specifyExeController = (SpecifyExeController) loader.getController();
-                    specifyExeController.setLabel(label.getText());
+                    specifyExeController.setLabel(exe.getText(),label.getText());
                 }
             });
             vBox.getChildren().add(label);
@@ -68,7 +67,7 @@ public class BigController extends FXMLinitializer implements Initializable {
             radioBox.setSpacing(22);
             radioList.put(keyRadio++,radioButton);
             labelMap.put(key++,label);
-            ThatExercise thatExercise = new ThatExercise(label.getText());
+            addData(label);
 
         }
     }
@@ -95,6 +94,7 @@ public class BigController extends FXMLinitializer implements Initializable {
             labelMap.remove(iter);
             radioBox.getChildren().remove(iter);
             vBox.getChildren().remove(iter);
+            removeFromData(iter);
             key--;
             keyRadio--;
             for (Integer i : radioList.keySet()) {
@@ -117,6 +117,16 @@ public class BigController extends FXMLinitializer implements Initializable {
             Alerts alerts = new Alerts("You have to specify which element you want to remove");
             alerts.displayError();
         }
+    }
+    @Override
+    public BodyPartsData getBodyInstance() {
+        DataManager dataManager = DataManager.getInstance();
+        BodyPartsData bodyPartsData = dataManager.chooseBodyPart(exe.getText());
+        return bodyPartsData;
+    }
+    @Override
+    public ThatExercise getThatExeInstance() {
+        return null;
     }
     private void listInitalizer() {
         radioList = new TreeMap<>();
@@ -141,4 +151,16 @@ public class BigController extends FXMLinitializer implements Initializable {
         }
         return false;
     }
+    private void addData(Label label) {
+        BodyPartsData bodyPartsData = getBodyInstance();
+        ThatExercise thatExercise = new ThatExercise(label.getText());
+        bodyPartsData.add(thatExercise);
+    }
+    private void removeFromData(int index) {
+        String value = labelMap.get(index).getText();
+        BodyPartsData bodyPartsData = getBodyInstance();
+        bodyPartsData.remove(value);
+    }
+
+
 }
