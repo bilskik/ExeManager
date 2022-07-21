@@ -1,15 +1,16 @@
 package main.exemanager;
 
+import data.*;
 import javafx.scene.control.Alert;
 
 public class Alerts {
     String description;
     String header = null;
-    Alerts(String header, String description) {
+    public Alerts(String header, String description) {
         this.description = description;
         this.header = header;
     }
-    Alerts(String description) {
+    public Alerts(String description) {
         this.description = description;
     }
     public void displayError() {
