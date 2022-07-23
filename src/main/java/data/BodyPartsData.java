@@ -24,4 +24,7 @@ public class BodyPartsData {
     public void setList() {
         list = new ArrayList<>();
     }
+    public void setList(List<ThatExercise> list) {
+        this.list = list;
+    }
 }

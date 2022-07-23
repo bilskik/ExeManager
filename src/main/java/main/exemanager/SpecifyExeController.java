@@ -70,7 +70,7 @@ public class SpecifyExeController extends FXMLinitializer implements Initializab
     public void quit(ActionEvent event) {
         FXMLLoader loader = initalize_2(event,"exercisesPage.fxml");
         BigController bigController = (BigController)loader.getController();
-        bigController.setLabel("ThatExe");
+        bigController.initialize("ThatExe", event);
     }
     @Override
     public BodyPartsData getBodyInstance() {

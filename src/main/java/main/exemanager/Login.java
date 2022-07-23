@@ -37,7 +37,6 @@ public class Login extends FXMLinitializer {
             UserName userName = UserName.getInstance();
             userName.setName(log);
             userName.setSurename(pass);
-            System.out.println(userName.getName() + " " + userName.getSurename());
             MainController controller = (MainController)loader.getController();
             controller.setNick(userName.getName());
         }

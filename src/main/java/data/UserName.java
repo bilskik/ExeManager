@@ -1,8 +1,8 @@
 package data;
 
 public class UserName {
-    String name;
-    String surename;
+    String name = "";
+    String surename = "";
     private static UserName userName = null;
 
     public static UserName getInstance() {

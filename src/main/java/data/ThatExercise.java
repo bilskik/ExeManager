@@ -6,7 +6,7 @@ public class ThatExercise {
     double amount= 0;
     double weight = 0;
     double time = 0;
-    public ThatExercise(String name, int series, int amount, int weight, int time) {
+    public ThatExercise(String name, double series, double amount, double weight, double time) {
         this.name = name;
         this.series = series;
         this.amount = amount;

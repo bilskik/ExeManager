@@ -4,11 +4,14 @@ import main.exemanager.Alerts;
 
 import java.io.FileWriter;
 import java.io.IOException;
+import java.io.SerializablePermission;
 import java.util.List;
+
+import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
 
 public class JsonWrite  {
-    public void writeToJson() {
+    public static void writeToJson() {
         JSONObject jsonObject = jsonPut();
         try {
             FileWriter file = new FileWriter("D:\\projekty_java\\ExeManager\\src\\main\\FIle's\\test.json");
@@ -21,22 +24,24 @@ public class JsonWrite  {
             throw new RuntimeException(e);
         }
     }
-    private JSONObject jsonPut() {
+    private static JSONObject jsonPut() {
         JSONObject UserOuterJson = new JSONObject();
         JSONObject BodyPartsInnerJson = new JSONObject();
+
         DataManager dataManager = DataManager.getInstance();
         BodyPartsData [] bodyPartsData = dataManager.getArrBodyPart();
         for(int i=0; i<bodyPartsData.length; i++) {
             List<ThatExercise> list = bodyPartsData[i].getList();
-            System.out.println(bodyPartsData[i].name);
-            JSONObject SpecifiedExeInnerJson = new JSONObject();
+            JSONArray SpecifiedExeInnerJson = new JSONArray();
             for(var iter : list) {
                 JSONObject ExeStatsInnerJson = new JSONObject();
+                ExeStatsInnerJson.put("NazwaCwiczenia", iter.getName());
                 ExeStatsInnerJson.put("Serie", iter.getSeries());
                 ExeStatsInnerJson.put("Powtorzenia", iter.getAmount());
                 ExeStatsInnerJson.put("Kilogramy", iter.getWeight());
                 ExeStatsInnerJson.put("Czasprzerwy", iter.getTime());
-                SpecifiedExeInnerJson.put(iter.name,ExeStatsInnerJson);
+                SpecifiedExeInnerJson.add(ExeStatsInnerJson);
+
             }
             BodyPartsInnerJson.put(bodyPartsData[i].name,SpecifiedExeInnerJson);
         }

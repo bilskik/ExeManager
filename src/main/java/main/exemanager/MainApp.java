@@ -1,6 +1,7 @@
 package main.exemanager;
 
 import data.JsonWrite;
+import data.UserName;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
@@ -20,8 +21,9 @@ public class MainApp extends Application {
     }
     @Override
     public void stop() {
-        JsonWrite jsonWrite = new JsonWrite();
-        jsonWrite.writeToJson();
+        UserName userName = UserName.getInstance();
+        if(!userName.getName().equals(""))
+            JsonWrite.writeToJson();
     }
 
     public static void main(String[] args) {

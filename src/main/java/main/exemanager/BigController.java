@@ -35,9 +35,16 @@ public class BigController extends FXMLinitializer implements Initializable, Bod
     public void initialize(URL url, ResourceBundle resourceBundle) {
         exe.setText("");
     }
-    public void setLabel(String thatPartOfBody) {
+    public void initialize(String thatPartOfBody, ActionEvent event) {
         exe.setText(thatPartOfBody);
         listInitalizer();
+        BodyPartsData bodyPartsData = getBodyInstance();
+        List<ThatExercise> list = bodyPartsData.getList();
+        System.out.println(list.size());
+        for(var element : list) {
+            String name = element.getName();
+            displayInitializer(name,event);
+        }
     }
     public void addElements(ActionEvent event) {
         String text  = textField.getText();
@@ -127,6 +134,24 @@ public class BigController extends FXMLinitializer implements Initializable, Bod
     @Override
     public ThatExercise getThatExeInstance() {
         return null;
+    }
+    private void displayInitializer(String text, ActionEvent event) {
+        Label label = labelSettings(text);
+        label.setOnMousePressed(new EventHandler<MouseEvent>() {
+            @Override
+            public void handle(MouseEvent mouseEvent) {
+                FXMLLoader loader = initalize_2(event, "specifiedExe.fxml");
+                SpecifyExeController specifyExeController = (SpecifyExeController) loader.getController();
+                specifyExeController.setLabel(exe.getText(),label.getText());
+            }
+        });
+        vBox.getChildren().add(label);
+        vBox.setSpacing(5);
+        RadioButton radioButton = new RadioButton();
+        radioBox.getChildren().add(radioButton);
+        radioBox.setSpacing(22);
+        radioList.put(keyRadio++,radioButton);
+        labelMap.put(key++,label);
     }
     private void listInitalizer() {
         radioList = new TreeMap<>();
