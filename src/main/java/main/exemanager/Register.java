@@ -50,8 +50,9 @@ public class Register {
         openLogin(event);
     }
     private void reader(String log, String pass) {
+        String path = "D:\\projekty_java\\ExeManager\\src\\main\\FIle's\\Logins\\login.txt";
         try {
-            FileWriter fileWriter = new FileWriter("D:\\projekty_java\\ExeManager\\src\\main\\FIle's\\Logins\\login.txt",true);
+            FileWriter fileWriter = new FileWriter(path,true);
             fileWriter.write(log + ":" + pass);
             fileWriter.write("\n");
             fileWriter.close();

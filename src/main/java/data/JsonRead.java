@@ -24,10 +24,7 @@ public class JsonRead {
             if(directoryListning != null) {
                 UserName userName = UserName.getInstance();
                 for(File child : directoryListning) {
-                    String name = userName.getName() + ".json";
-                    System.out.println("Result of this shit" + child.getName().equals(name));
                     if(child.getName().equals(userName.getName() + ".json")) {
-                        System.out.println("im here");
                         JSONObject jsonObject = (JSONObject) jsonParser.parse(new
                                 FileReader(filePath + child.getName()));
                         reader(jsonObject);

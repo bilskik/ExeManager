@@ -17,9 +17,7 @@ public class Login extends FXMLinitializer {
     private TextField login;
     @FXML
     private TextField passwd;
-    private Stage stage;
-    private Scene scene;
-    private Parent root;
+
     public void submit(ActionEvent event) {
         String log = login.getText();
         String pass = passwd.getText();
@@ -39,7 +37,6 @@ public class Login extends FXMLinitializer {
             userName.setName(log);
             userName.setSurename(pass);
             JsonRead.readFromJson();
-            debugger();
             MainController controller = (MainController)loader.getController();
             controller.setNick(userName.getName());
         }
@@ -59,8 +56,6 @@ public class Login extends FXMLinitializer {
         Map<String, String> data = reader.read();
         if(!data.isEmpty()) {
             for (var key : data.keySet()) {
-                UserName userName = UserName.getInstance();
-                userName.addList(key);
                 String value = data.get(key);
                 if (key.equals(log) && value.equals(pass))
                     return true;

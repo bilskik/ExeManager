@@ -10,7 +10,8 @@ public class Reader {
     Map<String,String> data;
 
     public Map<String,String> read() {
-        File file = new File("D:\\projekty_java\\ExeManager\\src\\main\\FIle's\\Logins\\login.txt");
+        String path = "D:\\projekty_java\\ExeManager\\src\\main\\FIle's\\Logins\\login.txt";
+        File file = new File(path);
         data = new HashMap<>();
         try {
             Scanner scanner = new Scanner(file);

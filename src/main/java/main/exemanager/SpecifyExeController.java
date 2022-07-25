@@ -20,7 +20,7 @@ public class SpecifyExeController extends FXMLinitializer implements Initializab
     @FXML
     TextField series;
     @FXML
-    TextField repeat;
+    TextField amount;
     @FXML
     TextField weight;
     @FXML
@@ -49,13 +49,10 @@ public class SpecifyExeController extends FXMLinitializer implements Initializab
         for(var field : textValues) {
 
             try {
-                System.out.println("text from field: ");
-                System.out.println(field.getText());
                 if(field.getText().equals(""))
                     data[i] = 0.0;
                 else
                     data[i] = Double.parseDouble(field.getText());
-                //System.out.println(data[i]);
                 i++;
             }
             catch(NumberFormatException exception) {
@@ -67,14 +64,11 @@ public class SpecifyExeController extends FXMLinitializer implements Initializab
         }
         ThatExercise thatExercise = getThatExeInstance();
         setThatExe(thatExercise);
-        for(int k=0; k<data.length; k++)
-            System.out.println(data[k]);
-        //debugger();
     }
     private void initalizor() {
         ThatExercise thatExercise = getThatExeInstance();
         series.setText(Double.toString(thatExercise.getSeries()));
-        repeat.setText(Double.toString(thatExercise.getAmount()));
+        amount.setText(Double.toString(thatExercise.getAmount()));
         weight.setText(Double.toString(thatExercise.getWeight()));
         timeBreak.setText(Double.toString(thatExercise.getTime()));
     }
@@ -104,7 +98,7 @@ public class SpecifyExeController extends FXMLinitializer implements Initializab
     private TextField [] setTextField() {
         textValues = new TextField[4];
         textValues[0] = series;
-        textValues[1] = repeat;
+        textValues[1] = amount;
         textValues[2] = weight;
         textValues[3] = timeBreak;
         return textValues;
@@ -119,21 +113,4 @@ public class SpecifyExeController extends FXMLinitializer implements Initializab
         for(var field : textValues)
             field.setEditable(b);
     }
-    private void debugger() {
-        DataManager dataManager = DataManager.getInstance();
-        BodyPartsData [] bodyPartsData = dataManager.getArrBodyPart();
-        for(int i=0; i<bodyPartsData.length; i++) {
-            System.out.println(bodyPartsData[i].getName());
-            List<ThatExercise> list = bodyPartsData[i].getList();
-            for(var iter : list) {
-                System.out.println(iter.getName());
-                System.out.println(iter.getAmount());
-                System.out.println(iter.getSeries());
-                System.out.println(iter.getWeight());
-            }
-        }
-
-    }
-
-
 }

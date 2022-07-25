@@ -27,23 +27,23 @@ public class MainController extends FXMLinitializer implements Initializable  {
 
     }
     public void shoulder(ActionEvent event) {
-        initalizeBigController(event,"BARKI");
+        initalizeBigController(event,"SHOULDER");
 
     }
     public void chest(ActionEvent event) {
-        initalizeBigController(event,"KLATKA PIERSIOWA");
+        initalizeBigController(event,"CHEST");
     }
     public void bictric(ActionEvent event) {
         initalizeBigController(event,"BIC&TRIC");
     }
     public void back(ActionEvent event) {
-        initalizeBigController(event,"PLECY");
+        initalizeBigController(event,"BACK");
     }
     public void abs(ActionEvent event) {
-        initalizeBigController(event,"BRZUCH");
+        initalizeBigController(event,"ABS");
     }
     public void legs(ActionEvent event) {
-        initalizeBigController(event,"NOGI");
+        initalizeBigController(event,"LEGS");
     }
     public void logOut(ActionEvent event) {
         JsonWrite.writeToJson();

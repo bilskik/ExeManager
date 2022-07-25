@@ -32,11 +32,11 @@ public class DataManager {
         return bodyPartsData;
     }
     private void setName(BodyPartsData [] bodyPartsData) {
-        bodyPartsData[0].name = "BARKI";
-        bodyPartsData[1].name = "KLATKA PIERSIOWA";
+        bodyPartsData[0].name = "SHOULDER";
+        bodyPartsData[1].name = "CHEST";
         bodyPartsData[2].name = "BIC&TRIC";
-        bodyPartsData[3].name = "PLECY";
-        bodyPartsData[4].name = "BRZUCH";
-        bodyPartsData[5].name = "NOGI";
+        bodyPartsData[3].name = "BACK";
+        bodyPartsData[4].name = "ABS";
+        bodyPartsData[5].name = "LEGS";
     }
 }

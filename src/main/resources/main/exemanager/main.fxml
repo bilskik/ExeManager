@@ -7,32 +7,32 @@
 
 <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="900.0" style="-fx-background-color: #00ffff;" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="main.exemanager.MainController">
     <children>
-        <Button layoutX="127.0" layoutY="281.0" mnemonicParsing="false" onAction="#bictric" prefHeight="75.0" prefWidth="275.0" style="-fx-background-color: #ff99ff; -fx-border-width: 3; -fx-border-color: #ffff66;" text="Biceps&amp;Tricpes">
+        <Button layoutX="127.0" layoutY="281.0" mnemonicParsing="false" onAction="#bictric" prefHeight="75.0" prefWidth="275.0" style="-fx-background-color: #ff99ff; -fx-border-width: 3; -fx-border-color: #ffff66;" text="Bic&amp;Tric">
             <font>
                 <Font size="30.0" />
             </font>
         </Button>
-        <Button layoutX="497.0" layoutY="158.0" mnemonicParsing="false" onAction="#chest" prefHeight="75.0" prefWidth="275.0" style="-fx-background-color: #ff99ff; -fx-border-color: #ffff66; -fx-border-width: 3;" text="Klatka Piersiowa">
+        <Button layoutX="497.0" layoutY="158.0" mnemonicParsing="false" onAction="#chest" prefHeight="75.0" prefWidth="275.0" style="-fx-background-color: #ff99ff; -fx-border-color: #ffff66; -fx-border-width: 3;" text="Chest">
             <font>
                 <Font size="30.0" />
             </font>
         </Button>
-        <Button layoutX="127.0" layoutY="158.0" mnemonicParsing="false" onAction="#shoulder" prefHeight="75.0" prefWidth="275.0" style="-fx-border-color: #ffff66; -fx-background-color: #ff99ff; -fx-border-width: 3;" text="Barki">
+        <Button layoutX="127.0" layoutY="158.0" mnemonicParsing="false" onAction="#shoulder" prefHeight="75.0" prefWidth="275.0" style="-fx-border-color: #ffff66; -fx-background-color: #ff99ff; -fx-border-width: 3;" text="Shoulder">
             <font>
                 <Font size="30.0" />
             </font>
         </Button>
-        <Button layoutX="497.0" layoutY="281.0" mnemonicParsing="false" onAction="#back" prefHeight="75.0" prefWidth="275.0" style="-fx-background-color: #ff99ff; -fx-border-color: #ffff66; -fx-border-width: 3;" text="Plecy">
+        <Button layoutX="497.0" layoutY="281.0" mnemonicParsing="false" onAction="#back" prefHeight="75.0" prefWidth="275.0" style="-fx-background-color: #ff99ff; -fx-border-color: #ffff66; -fx-border-width: 3;" text="Back">
             <font>
                 <Font size="30.0" />
             </font>
         </Button>
-        <Button layoutX="127.0" layoutY="390.0" mnemonicParsing="false" onAction="#abs" prefHeight="75.0" prefWidth="275.0" style="-fx-background-color: #ff99ff; -fx-border-color: #ffff66; -fx-border-width: 3;" text="Brzuch">
+        <Button layoutX="127.0" layoutY="390.0" mnemonicParsing="false" onAction="#abs" prefHeight="75.0" prefWidth="275.0" style="-fx-background-color: #ff99ff; -fx-border-color: #ffff66; -fx-border-width: 3;" text="Abs">
             <font>
                 <Font size="30.0" />
             </font>
         </Button>
-        <Button layoutX="497.0" layoutY="390.0" mnemonicParsing="false" onAction="#legs" prefHeight="75.0" prefWidth="275.0" style="-fx-background-color: #ff99ff; -fx-border-color: #ffff66; -fx-border-width: 3;" text="Nogi">
+        <Button layoutX="497.0" layoutY="390.0" mnemonicParsing="false" onAction="#legs" prefHeight="75.0" prefWidth="275.0" style="-fx-background-color: #ff99ff; -fx-border-color: #ffff66; -fx-border-width: 3;" text="Legs">
             <font>
                 <Font size="30.0" />
             </font>
