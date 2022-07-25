@@ -20,7 +20,6 @@ public class JsonRead {
             JSONObject jsonObject = (JSONObject) jsonParser.parse(new
                     FileReader("D:\\projekty_java\\ExeManager\\src\\main\\FIle's\\test.json"));
             reader(jsonObject);
-
         }
         catch(FileNotFoundException e) {
             e.printStackTrace();
@@ -39,9 +38,9 @@ public class JsonRead {
             List<ThatExercise> list = new ArrayList<>();
             JSONArray exeArr = (JSONArray)jsonUser.get(bodyPartsData[i].name);
             for(int j=0; j<exeArr.size(); j++) {
-                if(exeArr.get(i) == null)
+                if(exeArr.get(j) == null)
                     continue;
-                JSONObject specifiedExe = (JSONObject) exeArr.get(i);
+                JSONObject specifiedExe = (JSONObject) exeArr.get(j);
                 ThatExercise thatExercise = setThatExerciseClass(specifiedExe);
                 list.add(thatExercise);
             }

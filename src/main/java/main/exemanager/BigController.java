@@ -40,7 +40,6 @@ public class BigController extends FXMLinitializer implements Initializable, Bod
         listInitalizer();
         BodyPartsData bodyPartsData = getBodyInstance();
         List<ThatExercise> list = bodyPartsData.getList();
-        System.out.println(list.size());
         for(var element : list) {
             String name = element.getName();
             displayInitializer(name,event);
@@ -59,13 +58,10 @@ public class BigController extends FXMLinitializer implements Initializable, Bod
         }
         else {
             Label label = labelSettings(text);
-            label.setOnMousePressed(new EventHandler<MouseEvent>() {
-                @Override
-                public void handle(MouseEvent mouseEvent) {
-                    FXMLLoader loader = initalize_2(event, "specifiedExe.fxml");
-                    SpecifyExeController specifyExeController = (SpecifyExeController) loader.getController();
-                    specifyExeController.setLabel(exe.getText(),label.getText());
-                }
+            label.setOnMousePressed(mouseEvent -> {
+                FXMLLoader loader = initalize_2(event, "specifiedExe.fxml");
+                SpecifyExeController specifyExeController = (SpecifyExeController) loader.getController();
+                specifyExeController.setLabel(exe.getText(), label.getText());
             });
             vBox.getChildren().add(label);
             vBox.setSpacing(5);

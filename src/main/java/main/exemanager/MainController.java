@@ -57,6 +57,7 @@ public class MainController extends FXMLinitializer implements Initializable  {
         bigController.initialize(exeName,event);
     }
     private void debugger() {
+        System.out.println("Readed JsonFile");
         DataManager dataManager = DataManager.getInstance();
         BodyPartsData[] bodyPartsData = dataManager.getArrBodyPart();
         for (int i = 0; i < bodyPartsData.length; i++) {
