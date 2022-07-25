@@ -10,10 +10,13 @@ public class BodyPartsData {
         list.add(thatExercise);
     }
     public void remove(String value) {
+        int index = 0;
         for(var thatExeElement : list) {
             if(thatExeElement.name.equals(value))
-                list.remove(thatExeElement);
+                break;
+            index++;
         }
+        list.remove(index);
     }
     public List<ThatExercise> getList() {
         return list;

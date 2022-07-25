@@ -51,7 +51,7 @@ public class Register {
     }
     private void reader(String log, String pass) {
         try {
-            FileWriter fileWriter = new FileWriter("D:\\projekty_java\\ExeManager\\src\\main\\FIle's\\login.txt",true);
+            FileWriter fileWriter = new FileWriter("D:\\projekty_java\\ExeManager\\src\\main\\FIle's\\Logins\\login.txt",true);
             fileWriter.write(log + ":" + pass);
             fileWriter.write("\n");
             fileWriter.close();

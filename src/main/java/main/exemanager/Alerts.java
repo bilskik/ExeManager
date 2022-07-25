@@ -1,6 +1,6 @@
 package main.exemanager;
 
-import data.*;
+
 import javafx.scene.control.Alert;
 
 public class Alerts {

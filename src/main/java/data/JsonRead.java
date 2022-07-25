@@ -6,6 +6,7 @@ import org.json.simple.JSONObject;
 import org.json.simple.parser.JSONParser;
 import org.json.simple.parser.ParseException;
 
+import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
@@ -16,10 +17,25 @@ import java.util.List;
 public class JsonRead {
     public static void readFromJson() {
         JSONParser jsonParser = new JSONParser();
+        String filePath = "D:\\projekty_java\\ExeManager\\src\\main\\FIle's\\Data\\";
         try {
-            JSONObject jsonObject = (JSONObject) jsonParser.parse(new
-                    FileReader("D:\\projekty_java\\ExeManager\\src\\main\\FIle's\\test.json"));
-            reader(jsonObject);
+            File dir = new File(filePath);
+            File [] directoryListning = dir.listFiles();
+            if(directoryListning != null) {
+                UserName userName = UserName.getInstance();
+                for(File child : directoryListning) {
+                    String name = userName.getName() + ".json";
+                    System.out.println("Result of this shit" + child.getName().equals(name));
+                    if(child.getName().equals(userName.getName() + ".json")) {
+                        System.out.println("im here");
+                        JSONObject jsonObject = (JSONObject) jsonParser.parse(new
+                                FileReader(filePath + child.getName()));
+                        reader(jsonObject);
+                        break;
+                    }
+
+                }
+            }
         }
         catch(FileNotFoundException e) {
             e.printStackTrace();
@@ -34,7 +50,7 @@ public class JsonRead {
         BodyPartsData [] bodyPartsData = dataManager.getArrBodyPart();
         UserName userName = UserName.getInstance();
         JSONObject jsonUser = (JSONObject)jsonWholeFileObject.get(userName.name);
-        for(int i=0; i<6; i++) {
+        for(int i=0; i< bodyPartsData.length; i++) {
             List<ThatExercise> list = new ArrayList<>();
             JSONArray exeArr = (JSONArray)jsonUser.get(bodyPartsData[i].name);
             for(int j=0; j<exeArr.size(); j++) {
@@ -57,8 +73,8 @@ public class JsonRead {
             value[1] = (Double)specifiedExe.get("Powtorzenia");
         if(specifiedExe.get("Kilogramy") != null)
             value[2] = (Double)specifiedExe.get("Kilogramy");
-        if(specifiedExe.get("CzasPrzerwy") != null)
-            value[3] = (Double)specifiedExe.get("CzasPrzerwy");
+        if(specifiedExe.get("Czasprzerwy") != null)
+            value[3] = (Double)specifiedExe.get("Czasprzerwy");
         return new ThatExercise((String)specifiedExe.get("NazwaCwiczenia"),value[0],value[1],value[2],value[3]);
     }
 }

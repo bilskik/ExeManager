@@ -1,6 +1,6 @@
 package main.exemanager;
 
-import data.UserName;
+import data.*;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -9,6 +9,7 @@ import javafx.scene.Scene;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
 
+import java.util.List;
 import java.util.Map;
 
 public class Login extends FXMLinitializer {
@@ -37,6 +38,8 @@ public class Login extends FXMLinitializer {
             UserName userName = UserName.getInstance();
             userName.setName(log);
             userName.setSurename(pass);
+            JsonRead.readFromJson();
+            debugger();
             MainController controller = (MainController)loader.getController();
             controller.setNick(userName.getName());
         }
@@ -56,12 +59,30 @@ public class Login extends FXMLinitializer {
         Map<String, String> data = reader.read();
         if(!data.isEmpty()) {
             for (var key : data.keySet()) {
+                UserName userName = UserName.getInstance();
+                userName.addList(key);
                 String value = data.get(key);
                 if (key.equals(log) && value.equals(pass))
                     return true;
             }
         }
             return false;
+    }
+    private void debugger() {
+        System.out.println("Readed JsonFile");
+        DataManager dataManager = DataManager.getInstance();
+        BodyPartsData[] bodyPartsData = dataManager.getArrBodyPart();
+        for (int i = 0; i < bodyPartsData.length; i++) {
+            System.out.println(bodyPartsData[i].getName());
+            List<ThatExercise> list = bodyPartsData[i].getList();
+            for (var iter : list) {
+                System.out.println("Nazwa Cwiczenia " + iter.getName());
+                System.out.println(iter.getSeries());
+                System.out.println(iter.getAmount());
+                System.out.println(iter.getWeight());
+                System.out.println(iter.getTime());
+            }
+        }
     }
 
 }

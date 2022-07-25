@@ -40,6 +40,21 @@ public class FXMLinitializer {
         }
         return null;
     }
+    public FXMLLoader initalize(String filename) {
+        try {
+            FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("specifiedExe.fxml"));
+            Parent root = fxmlLoader.load();
+            Stage stage1 = new Stage();
+            stage1.setScene(new Scene(root));
+            stage1.show();
+            return fxmlLoader;
+        }
+        catch(IOException e) {
+            displayAlert(e);
+        }
+        return null;
+    }
+
     private void displayAlert(IOException e) {
         e.printStackTrace();
         Alerts alerts = new Alerts("FileNotFound!");

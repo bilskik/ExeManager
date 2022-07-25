@@ -2,21 +2,22 @@ package main.exemanager;
 
 import data.*;
 import javafx.event.ActionEvent;
-import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.geometry.Pos;
+import javafx.scene.control.Label;
 import javafx.scene.control.RadioButton;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.*;
 import javafx.scene.paint.Color;
-import javafx.scene.control.Label;
-import javafx.scene.input.MouseEvent;
 import javafx.scene.text.Font;
 
 import java.net.URL;
-import java.util.*;
+import java.util.List;
+import java.util.Map;
+import java.util.ResourceBundle;
+import java.util.TreeMap;
 
 public class BigController extends FXMLinitializer implements Initializable, BodyPartsInstance {
     @FXML
@@ -42,7 +43,7 @@ public class BigController extends FXMLinitializer implements Initializable, Bod
         List<ThatExercise> list = bodyPartsData.getList();
         for(var element : list) {
             String name = element.getName();
-            displayInitializer(name,event);
+            displayInitializer(name);
         }
     }
     public void addElements(ActionEvent event) {
@@ -58,11 +59,13 @@ public class BigController extends FXMLinitializer implements Initializable, Bod
         }
         else {
             Label label = labelSettings(text);
+
             label.setOnMousePressed(mouseEvent -> {
-                FXMLLoader loader = initalize_2(event, "specifiedExe.fxml");
+                FXMLLoader loader = initalize( "specifiedExe.fxml");
                 SpecifyExeController specifyExeController = (SpecifyExeController) loader.getController();
                 specifyExeController.setLabel(exe.getText(), label.getText());
             });
+
             vBox.getChildren().add(label);
             vBox.setSpacing(5);
             RadioButton radioButton = new RadioButton();
@@ -93,11 +96,11 @@ public class BigController extends FXMLinitializer implements Initializable, Bod
             }
         }
         if(iter >= 0) {
+            removeFromData(iter);
             radioList.remove(iter);
             labelMap.remove(iter);
             radioBox.getChildren().remove(iter);
             vBox.getChildren().remove(iter);
-            removeFromData(iter);
             key--;
             keyRadio--;
             for (Integer i : radioList.keySet()) {
@@ -131,15 +134,12 @@ public class BigController extends FXMLinitializer implements Initializable, Bod
     public ThatExercise getThatExeInstance() {
         return null;
     }
-    private void displayInitializer(String text, ActionEvent event) {
+    private void displayInitializer(String text) {
         Label label = labelSettings(text);
-        label.setOnMousePressed(new EventHandler<MouseEvent>() {
-            @Override
-            public void handle(MouseEvent mouseEvent) {
-                FXMLLoader loader = initalize_2(event, "specifiedExe.fxml");
-                SpecifyExeController specifyExeController = (SpecifyExeController) loader.getController();
-                specifyExeController.setLabel(exe.getText(),label.getText());
-            }
+        label.setOnMousePressed(mouseEvent -> {
+            FXMLLoader fxmlLoader =  initalize("specifiedExe.fxml");
+            SpecifyExeController specifyExeController = fxmlLoader.getController();
+            specifyExeController.setLabel(exe.getText(),label.getText());
         });
         vBox.getChildren().add(label);
         vBox.setSpacing(5);

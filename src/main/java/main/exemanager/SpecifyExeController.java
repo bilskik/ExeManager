@@ -6,13 +6,11 @@ import data.DataManager;
 import data.ThatExercise;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 
 import java.net.URL;
-import java.util.Arrays;
 import java.util.List;
 import java.util.ResourceBundle;
 
@@ -35,11 +33,11 @@ public class SpecifyExeController extends FXMLinitializer implements Initializab
         specExe.setText("");
     }
     public void setLabel(String bodyPartName, String exeName) {
-        System.out.println("exeName : " + exeName + " bodyPartName " + bodyPartName);
         specExe.setText(exeName);
         textValues = setTextField();
         this.bodyPartName = bodyPartName;
         data = setDouble();
+        initalizor();
     }
     public void edit(ActionEvent event) {
        setTextFieldEditable(true);
@@ -49,11 +47,15 @@ public class SpecifyExeController extends FXMLinitializer implements Initializab
 
         int i = 0;
         for(var field : textValues) {
+
             try {
+                System.out.println("text from field: ");
+                System.out.println(field.getText());
                 if(field.getText().equals(""))
                     data[i] = 0.0;
                 else
                     data[i] = Double.parseDouble(field.getText());
+                //System.out.println(data[i]);
                 i++;
             }
             catch(NumberFormatException exception) {
@@ -65,17 +67,20 @@ public class SpecifyExeController extends FXMLinitializer implements Initializab
         }
         ThatExercise thatExercise = getThatExeInstance();
         setThatExe(thatExercise);
-        debugger();
+        for(int k=0; k<data.length; k++)
+            System.out.println(data[k]);
+        //debugger();
     }
-    public void quit(ActionEvent event) {
-        FXMLLoader loader = initalize_2(event,"exercisesPage.fxml");
-        BigController bigController = (BigController)loader.getController();
-        bigController.initialize("ThatExe", event);
+    private void initalizor() {
+        ThatExercise thatExercise = getThatExeInstance();
+        series.setText(Double.toString(thatExercise.getSeries()));
+        repeat.setText(Double.toString(thatExercise.getAmount()));
+        weight.setText(Double.toString(thatExercise.getWeight()));
+        timeBreak.setText(Double.toString(thatExercise.getTime()));
     }
     @Override
     public BodyPartsData getBodyInstance() {
         DataManager dataManager = DataManager.getInstance();
-        System.out.println("BODY PART NAME: " + bodyPartName);
         BodyPartsData bodyPartsData = dataManager.chooseBodyPart(bodyPartName);
         return bodyPartsData;
     }
